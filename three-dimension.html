@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三维</title>
+    <script src="https://cdn.staticfile.org/echarts/5.3.3/echarts.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts-gl/2.0.8/echarts-gl.min.js"></script>
+    <style type="text/css">
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="main" style="height: 100%;width: 100%"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var x = ['Temporal','Spatial','Spatial-temporal']
+    var y = ['RNN-based models','CNN-based models','Transformer-based models','CNN-based composite models','GNN-based composite models','Miscellaneous models']
+
+    option = {
+
+        tooltip:{},
+
+        grid3D: {
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
+                }
+            },
+            axisPointer: {
+                show: false
+            },
+            viewControl: {
+                autoRotate: true,
+            }
+        },
+
+        xAxis3D: {
+            data: x,
+            name: 'Methods',
+            nameTextStyle: {
+                color: '#000'
+            },
+            axisLine:{
+                lineStyle: {
+                    color: '#000'
+                }
+            }
+        },
+
+        yAxis3D: {
+            data: y,
+            name: 'Techniques',
+			nameGap: 50,
+            nameTextStyle: {
+                color: '#000'
+            },
+            axisLine:{
+                lineStyle: {
+                    color: '#000'
+                }
+            }
+        },
+
+        zAxis3D: {
+            name: 'Number',
+            nameTextStyle: {
+                color: '#000'
+            },
+            axisLine:{
+                lineStyle: {
+                    color: '#000'
+                }
+            }
+        },
+
+		legend:{},
+
+        series: [{
+            stack: 'stack',
+            name: 'Single target',
+            type: 'bar3D',
+            <!--  data: data -->
+            data: [[x[0],y[0],7],[x[0],y[1],2],[x[0],y[2],3],
+                    [x[1],y[1],2],
+
+                    [x[2],y[0],0],[x[2],y[1],0],[x[2],y[2],0],[x[2],y[3],4],[x[2],y[4],0],[x[2],y[5],6],],
+           itemStyle: {
+               color: 'red',
+           },
+            shading: 'lambert'
+        },
+            {
+                stack: 'stack',
+                name: 'Multi-target',
+                type: 'bar3D',
+                <!--  data: data -->
+                data: [[x[0],y[0],1],[x[0],y[1],0],[x[0],y[2],8],
+                        [x[1],y[1],0],
+                        [x[2],y[0],1],[x[2],y[1],1],[x[2],y[2],4],[x[2],y[3],4],[x[2],y[4],23],[x[2],y[5],14]],
+                shading: 'lambert'
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+</script>
+</body>
+</html>
